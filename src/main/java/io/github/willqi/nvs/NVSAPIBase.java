@@ -87,7 +87,7 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
     public DataPacket convertPacketToPlayerVersion(Player player, DataPacket packet) {
         if (!oldProtocolOnlinePlayers.containsKey(player.getUniqueId())) {
             // We do not have to change the packet. Just recreate it
-            return packet;  // Latest version.
+            return LATEST_PROTOCOL_HANDLER.convertClientBoundPacketToThisVersion(packet);  // Latest version.
         }
         ProtocolHandler handler = LATEST_OLD_PROTOCOL_HANDLER;
         int targetProtocolVersion = oldProtocolOnlinePlayers.get(player.getUniqueId());
@@ -100,6 +100,7 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
 
         if (!(newPacket instanceof ConvertedProtocolPacket)) {
             // We do not have to change the packet. Just recreate it
+            return LATEST_PROTOCOL_HANDLER.convertClientBoundPacketToThisVersion(packet);  // Latest version.
         }
 
         return newPacket;
@@ -111,7 +112,7 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
         if (oldProtocolOnlinePlayers.containsKey(player.getUniqueId())) {
             handler = protocolVersionSupport.get(oldProtocolOnlinePlayers.get(player.getUniqueId()));
         } else {
-            return packet;  // Latest version.
+            return LATEST_PROTOCOL_HANDLER.convertServerBoundPacketToThisVersion(packet);  // Latest version.
         }
         DataPacket newPacket;
 
@@ -120,6 +121,10 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
             handler = protocolVersionSupport.get(handler.getNextProtocolVersion());
         } while (handler.getProtocolVersion() != LATEST_PROTOCOL_HANDLER.getProtocolVersion());
 
+        if (!(newPacket instanceof ConvertedProtocolPacket)) {
+            // We do not have to change the packet. Just recreate it
+            return LATEST_PROTOCOL_HANDLER.convertServerBoundPacketToThisVersion(packet);  // Latest version.
+        }
 
         return newPacket;
     }
