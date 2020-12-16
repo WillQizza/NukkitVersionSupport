@@ -1,6 +1,7 @@
 package io.github.willqi.nvs.packets.latest;
 
 import cn.nukkit.network.protocol.AddPlayerPacket;
+import cn.nukkit.network.protocol.ProtocolInfo;
 import io.github.willqi.nvs.packets.ConvertedProtocolPacket;
 
 public class AddPlayerPacketLatest extends AddPlayerPacket implements ConvertedProtocolPacket {
