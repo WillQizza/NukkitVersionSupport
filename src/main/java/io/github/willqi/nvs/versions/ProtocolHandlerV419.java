@@ -2,6 +2,7 @@ package io.github.willqi.nvs.versions;
 
 import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.ProtocolInfo;
+import cn.nukkit.network.protocol.ResourcePacksInfoPacket;
 import io.github.willqi.nvs.packets.v419.ResourcePacksInfoPacketV419;
 import io.github.willqi.nvs.packets.v422.ResourcePacksInfoPacketV422;
 
@@ -14,10 +15,10 @@ public class ProtocolHandlerV419 implements ProtocolHandler {
 
             case ProtocolInfo.RESOURCE_PACKS_INFO_PACKET:
                 newPacket = new ResourcePacksInfoPacketV419();
-                ((ResourcePacksInfoPacketV419)newPacket).resourcePackEntries = ((ResourcePacksInfoPacketV422)packet).resourcePackEntries;
-                ((ResourcePacksInfoPacketV419)newPacket).behaviourPackEntries = ((ResourcePacksInfoPacketV422)packet).behaviourPackEntries;
-                ((ResourcePacksInfoPacketV419)newPacket).mustAccept = ((ResourcePacksInfoPacketV422)packet).mustAccept;
-                ((ResourcePacksInfoPacketV419)newPacket).scripting = ((ResourcePacksInfoPacketV422)packet).scripting;
+                ((ResourcePacksInfoPacketV419)newPacket).resourcePackEntries = ((ResourcePacksInfoPacket)packet).resourcePackEntries;
+                ((ResourcePacksInfoPacketV419)newPacket).behaviourPackEntries = ((ResourcePacksInfoPacket)packet).behaviourPackEntries;
+                ((ResourcePacksInfoPacketV419)newPacket).mustAccept = ((ResourcePacksInfoPacket)packet).mustAccept;
+                ((ResourcePacksInfoPacketV419)newPacket).scripting = ((ResourcePacksInfoPacket)packet).scripting;
                 break;
 
         }

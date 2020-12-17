@@ -1,8 +1,10 @@
 package io.github.willqi.nvs.versions;
 
 import cn.nukkit.network.protocol.DataPacket;
+import cn.nukkit.network.protocol.LoginPacket;
 import cn.nukkit.network.protocol.ProtocolInfo;
 import io.github.willqi.nvs.packets.v419.ResourcePacksInfoPacketV419;
+import io.github.willqi.nvs.packets.v422.LoginPacketV422;
 import io.github.willqi.nvs.packets.v422.ResourcePacksInfoPacketV422;
 
 public class ProtocolHandlerV422 implements ProtocolHandler {
@@ -26,7 +28,18 @@ public class ProtocolHandlerV422 implements ProtocolHandler {
 
     @Override
     public DataPacket convertServerBoundPacketToThisVersion(DataPacket packet) {
-        return packet;
+        DataPacket newPacket = packet;
+        switch (packet.pid()) {
+
+            case ProtocolInfo.LOGIN_PACKET:
+                newPacket = new LoginPacketV422();
+                packet.setOffset(0);
+                newPacket.setBuffer(packet.getBuffer());
+                newPacket.decode();
+                break;
+
+        }
+        return newPacket;
     }
 
     @Override

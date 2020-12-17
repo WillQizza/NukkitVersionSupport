@@ -1,26 +1,10 @@
 package io.github.willqi.nvs.packets.v419;
 
-import cn.nukkit.network.protocol.DataPacket;
-import cn.nukkit.network.protocol.ProtocolInfo;
+import cn.nukkit.network.protocol.ResourcePacksInfoPacket;
 import cn.nukkit.resourcepacks.ResourcePack;
 import io.github.willqi.nvs.packets.ConvertedProtocolPacket;
 
-public class ResourcePacksInfoPacketV419 extends DataPacket implements ConvertedProtocolPacket {
-
-    public boolean mustAccept;
-    public boolean scripting;
-    public ResourcePack[] behaviourPackEntries;
-    public ResourcePack[] resourcePackEntries;
-
-    @Override
-    public byte pid() {
-        return ProtocolInfo.RESOURCE_PACKS_INFO_PACKET;
-    }
-
-    @Override
-    public void decode() {
-
-    }
+public class ResourcePacksInfoPacketV419 extends ResourcePacksInfoPacket implements ConvertedProtocolPacket {
 
     @Override
     public void encode() {
