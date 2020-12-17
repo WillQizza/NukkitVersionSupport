@@ -24,12 +24,22 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
 
     private static final Map<Integer, ProtocolHandler> protocolVersionSupport = new HashMap<>();
     private static final Set<Integer> supportedProtocolVersions = new HashSet<>();
-    private static final Set<Byte> supportedPacketIds = new HashSet<>();
 
     private static final ProtocolHandler LATEST_OLD_PROTOCOL_HANDLER;
     private static final ProtocolHandler LATEST_PROTOCOL_HANDLER = new ProtocolHandlerLatest();
 
+    private static NVSAPI instance;
+
     private static final int CURRENT_PROTOCOL_SUPPORT = 422;
+
+    static {
+        supportedProtocolVersions.add(419); // 1.16.100
+        protocolVersionSupport.put(419, new ProtocolHandlerV419());
+
+        protocolVersionSupport.put(422, new ProtocolHandlerV422()); // 1.16.200
+
+        LATEST_OLD_PROTOCOL_HANDLER = protocolVersionSupport.get(419);
+    }
 
     @Override
     public void onEnable () {
@@ -38,8 +48,10 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
             getServer().getPluginManager().disablePlugin(this);
             return;
         }
+        instance = this;
         getServer().getPluginManager().registerEvents(this, this);
         getLogger().info("NukkitVersionSupport has been loaded.");
+
     }
 
     @Override
@@ -169,14 +181,8 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
 
     }
 
-    static {
-        supportedProtocolVersions.add(419); // 1.16.100
-        protocolVersionSupport.put(419, new ProtocolHandlerV419());
-
-        protocolVersionSupport.put(422, new ProtocolHandlerV422()); // 1.16.200
-
-        LATEST_OLD_PROTOCOL_HANDLER = protocolVersionSupport.get(419);
-
+    public static NVSAPI getAPI () {
+        return instance;
     }
 
 }
