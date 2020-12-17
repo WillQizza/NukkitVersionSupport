@@ -4,6 +4,7 @@ import cn.nukkit.Player;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
+import cn.nukkit.event.player.PlayerQuitEvent;
 import cn.nukkit.event.server.DataPacketReceiveEvent;
 import cn.nukkit.event.server.DataPacketSendEvent;
 import cn.nukkit.network.protocol.DataPacket;
@@ -114,6 +115,13 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
 
         }
 
+    }
+
+    @EventHandler
+    public void onPlayerQuit (PlayerQuitEvent event) {
+        if (oldProtocolOnlinePlayers.containsKey(event.getPlayer().getUniqueId())) {
+            oldProtocolOnlinePlayers.remove(event.getPlayer().getUniqueId());
+        }
     }
 
     public DataPacket convertPacketToPlayerVersion (DataPacket packet, int targetProtocolVersion) {
