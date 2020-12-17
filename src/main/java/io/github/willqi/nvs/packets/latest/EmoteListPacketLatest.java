@@ -10,7 +10,7 @@ public class EmoteListPacketLatest extends EmoteListPacket implements ConvertedP
     public EmoteListPacketLatest (EmoteListPacket packet) {
         runtimeId = packet.runtimeId;
         for (UUID uuid : packet.pieceIds) {
-            packet.pieceIds.add(uuid);
+            pieceIds.add(uuid);
         }
     }
 
