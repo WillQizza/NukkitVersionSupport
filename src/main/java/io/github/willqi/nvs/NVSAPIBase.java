@@ -89,7 +89,7 @@ public class NVSAPIBase extends PluginBase implements Listener, NVSAPI {
                 }
             }
 
-            if ((oldProtocolOnlinePlayers.containsKey(event.getPlayer().getUniqueId()) || (event.getPacket() instanceof LoginPacket)) && !(event.getPacket() instanceof ConvertedProtocolPacket)) {
+            if ((oldProtocolOnlinePlayers.containsKey(event.getPlayer().getUniqueId()) || (event.getPacket() instanceof LoginPacket && supportedProtocolVersions.contains(((LoginPacket)event.getPacket()).getProtocol()))) && !(event.getPacket() instanceof ConvertedProtocolPacket)) {
 
                 if (event.getPacket() instanceof LoginPacket) {
                     LoginPacket loginPacket = (LoginPacket)event.getPacket();
