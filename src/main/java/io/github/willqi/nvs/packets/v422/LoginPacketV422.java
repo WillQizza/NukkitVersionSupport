@@ -134,7 +134,7 @@ public class LoginPacketV422 extends LoginPacket implements ConvertedProtocolPac
         byte[] data = Base64.getDecoder().decode(element.get("Image").getAsString());
         int width = element.get("ImageWidth").getAsInt();
         int height = element.get("ImageHeight").getAsInt();
-        return new SkinAnimation(new SerializedImage(width, height, data), type, frames);
+        return new SkinAnimation(new SerializedImage(width, height, data), type, frames, 0);
     }
 
     private static SerializedImage getImage(JsonObject token, String name) {

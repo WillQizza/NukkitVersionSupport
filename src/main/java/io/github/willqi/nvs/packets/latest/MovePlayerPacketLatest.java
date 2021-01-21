@@ -18,6 +18,7 @@ public class MovePlayerPacketLatest extends MovePlayerPacket implements Converte
         ridingEid = packet.ridingEid;
         int1 = packet.int1;
         int2 = packet.int2;
+        frame = packet.frame;
     }
 
 

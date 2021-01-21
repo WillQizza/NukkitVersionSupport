@@ -4,6 +4,6 @@
 
 ## Version Support
 
-Currently, this plugin supports upgrading clients connected on 1.16.100
+Currently, this plugin supports upgrading clients connected on 1.16.0+
 
 <!-- TODO: Add a tutorial on how to add version support for future versions -->
