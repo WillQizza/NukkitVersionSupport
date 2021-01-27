@@ -4,7 +4,6 @@ import cn.nukkit.network.protocol.DataPacket;
 import cn.nukkit.network.protocol.ProtocolInfo;
 import cn.nukkit.network.protocol.ResourcePacksInfoPacket;
 import io.github.willqi.nvs.packets.v419.ResourcePacksInfoPacketV419;
-import io.github.willqi.nvs.packets.v422.ResourcePacksInfoPacketV422;
 
 public class ProtocolHandlerV419 implements ProtocolHandler {
 

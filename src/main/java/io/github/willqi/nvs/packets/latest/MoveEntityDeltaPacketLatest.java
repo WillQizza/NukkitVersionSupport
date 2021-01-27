@@ -7,9 +7,9 @@ public class MoveEntityDeltaPacketLatest extends MoveEntityDeltaPacket implement
 
     public MoveEntityDeltaPacketLatest (MoveEntityDeltaPacket packet) {
         flags = packet.flags;
-        xDelta = packet.xDelta;
-        yDelta = packet.yDelta;
-        zDelta = packet.zDelta;
+        x = packet.x;
+        y = packet.y;
+        z = packet.z;
         yawDelta = packet.yawDelta;
         headYawDelta = packet.headYawDelta;
         pitchDelta = packet.pitchDelta;

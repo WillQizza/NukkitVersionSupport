@@ -7,6 +7,7 @@ public class ContainerClosePacketLatest extends ContainerClosePacket implements 
 
     public ContainerClosePacketLatest (ContainerClosePacket packet) {
         windowId = packet.windowId;
+        wasServerInitiated = packet.wasServerInitiated;
     }
 
 }
