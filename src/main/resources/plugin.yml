@@ -1,6 +1,6 @@
 name: NukkitVersionSupport
-description: Supports Minecraft versions below the latest
+description: Supports Minecraft versions 1.16.100+
 version: "1.0.0"
 api: ["1.0.0"]
 author: William Qi
-main: io.github.willqi.nvs.NVSAPIBase
+main: io.github.willqi.nvs.NVSAPI
